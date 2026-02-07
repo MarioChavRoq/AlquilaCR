@@ -11,12 +11,9 @@ namespace DAL.Interfaces
     {
 
         bool Add(TEntity entity);
-
-
         bool Update(TEntity entity);
         bool Remove(TEntity entity);
-
-
+        bool Delete(int id);
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
 

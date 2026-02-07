@@ -12,13 +12,16 @@ namespace DAL.Implementations
     {
         public IUsuariosDAL UsuariosDAL { get; set; }
 
-        private AlquilaCrContext _alquilaCrContext;
+        private readonly AlquilaCrContext _alquilaCrContext;
 
-        public UnidadDeTrabajo(AlquilaCrContext alquilaCrContext, IUsuariosDAL usuariosDAL)
+        public UnidadDeTrabajo
+            (
+            AlquilaCrContext alquilaCrContext, 
+            IUsuariosDAL usuariosDAL
+            )
         {
             this._alquilaCrContext = alquilaCrContext;
             this.UsuariosDAL = usuariosDAL;
-
         }
 
         public bool Complete()
@@ -28,7 +31,7 @@ namespace DAL.Implementations
                 _alquilaCrContext.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }
@@ -36,7 +39,7 @@ namespace DAL.Implementations
 
         public void Dispose()
         {
-            this._alquilaCrContext.Dispose();
+            _alquilaCrContext.Dispose();
         }
     }
 }

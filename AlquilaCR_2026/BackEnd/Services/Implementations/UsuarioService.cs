@@ -7,29 +7,12 @@ namespace BackEnd.Services.Implementations
 {
     public class UsuarioService : IUsuarioService
     {
-        IUnidadDeTrabajo _unidadDeTrabajo;
+        IUnidadDeTrabajo _Unidad;
 
         public UsuarioService(IUnidadDeTrabajo unidadDeTrabajo)
         {
-            _unidadDeTrabajo = unidadDeTrabajo;
+            _Unidad = unidadDeTrabajo;
         }
-
-        UsuarioDTO Convertir (Usuario usuario)
-        {
-            return new UsuarioDTO
-            {
-                UsuarioId = usuario.UsuarioId,
-                Nombre = usuario.Nombre,
-                Apellidos = usuario.Apellidos,
-                Email = usuario.Email,
-                PasswordHash = usuario.PasswordHash,
-                Telefono = usuario.Telefono,
-                DescripcionPerfil = usuario.DescripcionPerfil,
-                ImagenPerfilUrl = usuario.ImagenPerfilUrl,
-                Activo = usuario.Activo
-            };
-        }
-
         Usuario Convertir (UsuarioDTO usuario)
         {
             return new Usuario
@@ -46,38 +29,57 @@ namespace BackEnd.Services.Implementations
             };
         }
 
-        public UsuarioDTO Add(UsuarioDTO usuario)
+        UsuarioDTO Convertir(Usuario usuario)
         {
-            try
+            return new UsuarioDTO
             {
-                _unidadDeTrabajo.UsuariosDAL.Add(Convertir(usuario));
-                _unidadDeTrabajo.Complete();
-                return usuario;
-            }
-            catch (Exception)
-            {
-                throw;
-
-            }
+                UsuarioId = usuario.UsuarioId,
+                Nombre = usuario.Nombre,
+                Apellidos = usuario.Apellidos,
+                Email = usuario.Email,
+                PasswordHash = usuario.PasswordHash,
+                Telefono = usuario.Telefono,
+                DescripcionPerfil = usuario.DescripcionPerfil,
+                ImagenPerfilUrl = usuario.ImagenPerfilUrl,
+                Activo = usuario.Activo
+            };
         }
 
-        public void Delete(int id)
+        public void CreateUser(UsuarioDTO usuario)
         {
-            Usuario usuario = new Usuario { UsuarioId = id };
-            _unidadDeTrabajo.UsuariosDAL.Remove(usuario);
-            _unidadDeTrabajo.Complete();
-            throw new NotImplementedException();
+            var UsuarioEntity = Convertir(usuario);
+            _Unidad.UsuariosDAL.Add(UsuarioEntity);
+            _Unidad.Complete();
+
+
+
+            //try
+            //{
+            //    _Unidad.UsuariosDAL.Add(Convertir(usuario));
+            //    _Unidad.Complete();
+            //    return usuario;
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
         }
 
-        public UsuarioDTO GetById(int id)
+        public void DeleteUser(int id)
         {
-            var usuario= _unidadDeTrabajo.UsuariosDAL.Get(id);
+            _Unidad.UsuariosDAL.DeleteUsuario(id);
+            _Unidad.Complete();
+        }
+
+        public UsuarioDTO GetUserById(int id)
+        {
+            var usuario= _Unidad.UsuariosDAL.Get(id);
             return Convertir(usuario);
         }
 
-        public List<UsuarioDTO> GetUsuarios()
+        public List<UsuarioDTO> GetAllUsers()
         {
-            var usuarios = _unidadDeTrabajo.UsuariosDAL.GetAll();
+            var usuarios = _Unidad.UsuariosDAL.GetUsuarios();
             List<UsuarioDTO> listaUsuarios = new List<UsuarioDTO>();
             foreach (var usuario in usuarios)
             {
@@ -86,18 +88,26 @@ namespace BackEnd.Services.Implementations
             return listaUsuarios;
         }
 
-        public UsuarioDTO Update(UsuarioDTO usuario)
+        public void UpdateUser(UsuarioDTO usuario)
         {
-            try
-            {
-                _unidadDeTrabajo.UsuariosDAL.Update(Convertir(usuario));
-                _unidadDeTrabajo.Complete();
-                return usuario;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var usuarioEntity = Convertir(usuario);
+            _Unidad.UsuariosDAL.Update(usuarioEntity);
+            _Unidad.Complete();
+
+
+
+
+            //try
+            //{
+            //    _Unidad.UsuariosDAL.Update(Convertir(usuario));
+
+            //    _Unidad.Complete();
+            //    return usuario;
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
         }
     }
 }

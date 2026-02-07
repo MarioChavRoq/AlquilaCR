@@ -16,35 +16,33 @@ namespace BackEnd.Controllers
         }
 
         [HttpGet]
-        public ActionResult Get()
+        public IEnumerable<UsuarioDTO> Get()
         {
-            var usuarios = _usuarioService.GetUsuarios();
-            return Ok(usuarios);
+            return _usuarioService.GetAllUsers();
         }
 
         [HttpGet("{id}")]
-        public ActionResult Get(int id)
+        public UsuarioDTO Get(int id)
         {
-            var usuarios = _usuarioService.GetById(id);
-            return Ok(usuarios);
+            return _usuarioService.GetUserById(id);
         }
 
         [HttpPost]
-        public void Post([FromBody] UsuarioDTO usuarioDTO)
+        public void Post([FromBody] UsuarioDTO usuario)
         {
-            _usuarioService.Add(usuarioDTO);
+            _usuarioService.CreateUser(usuario);
         }
 
         [HttpPut]
-        public void Put([FromBody] UsuarioDTO usuarioDTO)
+        public void Put([FromBody] UsuarioDTO usuario)
         {
-            _usuarioService.Update(usuarioDTO);
+            _usuarioService.UpdateUser(usuario);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _usuarioService.Delete(id);
+            _usuarioService.DeleteUser(id);
         }
     }
 }

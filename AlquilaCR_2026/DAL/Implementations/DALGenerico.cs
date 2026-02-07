@@ -23,6 +23,7 @@ namespace DAL.Implementations
             try
             {
                 _alquilaCrContext.Add(entity);
+                _alquilaCrContext.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -47,9 +48,28 @@ namespace DAL.Implementations
             {
                 _alquilaCrContext.Set<TEntity>().Attach(entity);
                 _alquilaCrContext.Set<TEntity>().Remove(entity);
+                _alquilaCrContext.SaveChanges();
                 return true;
             }
             catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                var entity = _alquilaCrContext.Set<TEntity>().Find(id);
+                if (entity == null) 
+                { 
+                    _alquilaCrContext.Set<TEntity>().Remove(entity);
+                    _alquilaCrContext.SaveChanges();
+                }
+                return false;
+            }
+            catch
             {
                 return false;
             }
@@ -60,6 +80,7 @@ namespace DAL.Implementations
             try
             {
                 _alquilaCrContext.Entry(entity).State = EntityState.Modified;
+                _alquilaCrContext.SaveChanges();
                 return true;
             }
             catch (Exception)

@@ -9,5 +9,9 @@ namespace DAL.Interfaces
 {
     public interface IUsuariosDAL : IDALGenerico<Usuario>
     {
+        List<Usuario> GetUsuarios();
+        bool CreateUsuario(Usuario entity);
+        bool UpdateUsuario(Usuario entity);
+        bool DeleteUsuario (int UsuarioId);
     }
 }
