@@ -48,7 +48,7 @@ namespace BackEnd.Services.Implementations
         public void CreateUser(UsuarioDTO usuario)
         {
             var UsuarioEntity = Convertir(usuario);
-            _Unidad.UsuariosDAL.Add(UsuarioEntity);
+            _Unidad.UsuariosDAL.CreateUsuario(UsuarioEntity);
             _Unidad.Complete();
 
 
@@ -91,7 +91,7 @@ namespace BackEnd.Services.Implementations
         public void UpdateUser(UsuarioDTO usuario)
         {
             var usuarioEntity = Convertir(usuario);
-            _Unidad.UsuariosDAL.Update(usuarioEntity);
+            _Unidad.UsuariosDAL.UpdateUsuario(usuarioEntity);
             _Unidad.Complete();
 
 

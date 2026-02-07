@@ -29,6 +29,10 @@ builder.Services.AddDbContext<AlquilaCrContext>(optionsAction =>
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
 builder.Services.AddScoped<IUsuariosDAL, UsuariosDAL>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IRolesDAL, RolesDAL>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+
+
 
 #endregion
 

@@ -11,17 +11,20 @@ namespace DAL.Implementations
     public class UnidadDeTrabajo : IUnidadDeTrabajo
     {
         public IUsuariosDAL UsuariosDAL { get; set; }
+        public IRolesDAL RolesDAL { get; set; }
 
         private readonly AlquilaCrContext _alquilaCrContext;
 
         public UnidadDeTrabajo
             (
             AlquilaCrContext alquilaCrContext, 
-            IUsuariosDAL usuariosDAL
+            IUsuariosDAL usuariosDAL,
+            IRolesDAL rolesDAL
             )
         {
             this._alquilaCrContext = alquilaCrContext;
             this.UsuariosDAL = usuariosDAL;
+            this.RolesDAL = rolesDAL;
         }
 
         public bool Complete()

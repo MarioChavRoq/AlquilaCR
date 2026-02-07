@@ -23,8 +23,6 @@ public partial class Usuario
 
     public bool Activo { get; set; }
 
-    public DateTime FechaCreacion { get; set; }
-
     public virtual ICollection<Cita> CitaInquilinos { get; set; } = new List<Cita>();
 
     public virtual ICollection<Cita> CitaPropietarios { get; set; } = new List<Cita>();

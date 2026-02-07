@@ -30,7 +30,7 @@ namespace DAL.Implementations
         {
             try
             {
-                string sql = "EXEC [dbo].[sp_CreateUsuario] @Nombre,@Apellidos,@Email,@PasswordHash,@Telefono,@DescripcionPerfil,@ImagenPerfilUrl";
+                string sql = "EXEC [dbo].[sp_CreateUsuario] @Nombre,@Apellidos,@Email,@PasswordHash,@Telefono,@DescripcionPerfil,@ImagenPerfilUrl,@Activo";
 
                 var parameters = new SqlParameter[]
                 {
@@ -81,6 +81,13 @@ namespace DAL.Implementations
                         ParameterName = "@ImagenPerfilUrl",
                         SqlDbType = System.Data.SqlDbType.VarChar,
                         Value = entity.ImagenPerfilUrl
+                    },
+
+                    new SqlParameter()
+                    {
+                        ParameterName = "@Activo",
+                        SqlDbType = System.Data.SqlDbType.Bit,
+                        Value = entity.Activo
                     }
                 };
 
@@ -99,7 +106,7 @@ namespace DAL.Implementations
         {
             try
             {
-                string sql = "EXEC [dbo].[sp_UpdateUsuario] @UsuarioId,@Nombre,@Apellidos,@Email,@PasswordHash,@Telefono,@DescripcionPerfil,@ImagenPerfilUrl";
+                string sql = "EXEC [dbo].[sp_UpdateUsuario] @UsuarioId,@Nombre,@Apellidos,@Email,@PasswordHash,@Telefono,@DescripcionPerfil,@ImagenPerfilUrl,@Activo";
 
                 var parameters = new SqlParameter[]
                 {
@@ -157,6 +164,13 @@ namespace DAL.Implementations
                         ParameterName = "@ImagenPerfilUrl",
                         SqlDbType = System.Data.SqlDbType.VarChar,
                         Value = entity.ImagenPerfilUrl
+                    },
+
+                    new SqlParameter()
+                    {
+                        ParameterName = "@Activo",
+                        SqlDbType = System.Data.SqlDbType.Bit,
+                        Value = entity.Activo
                     }
                 };
 
@@ -175,7 +189,7 @@ namespace DAL.Implementations
         {
             try
             {
-                string sql = "EXEC [dbo].[sp_UpdateUsuario] @UsuarioId";
+                string sql = "EXEC [dbo].[sp_DeleteUsuario] @UsuarioId";
                 var parameters = new SqlParameter[]
                 {
                     new SqlParameter()

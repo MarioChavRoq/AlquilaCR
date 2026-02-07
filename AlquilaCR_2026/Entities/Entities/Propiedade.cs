@@ -27,8 +27,6 @@ public partial class Propiedade
 
     public bool Disponible { get; set; }
 
-    public DateTime FechaCreacion { get; set; }
-
     public virtual ICollection<Cita> Cita { get; set; } = new List<Cita>();
 
     public virtual ICollection<ImagenesPropiedad> ImagenesPropiedads { get; set; } = new List<ImagenesPropiedad>();
