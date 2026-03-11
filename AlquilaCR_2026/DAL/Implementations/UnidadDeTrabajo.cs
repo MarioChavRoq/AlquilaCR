@@ -12,6 +12,9 @@ namespace DAL.Implementations
     {
         public IUsuariosDAL UsuariosDAL { get; set; }
         public IRolesDAL RolesDAL { get; set; }
+        public IUsuarioRolesDAL UsuarioRolesDAL { get; set; }
+        public IPropiedadesDAL PropiedadesDAL { get; set; }
+        public IImagenesPropiedadDAL ImagenesPropiedadDAL { get; set; }
 
         private readonly AlquilaCrContext _alquilaCrContext;
 
@@ -19,12 +22,18 @@ namespace DAL.Implementations
             (
             AlquilaCrContext alquilaCrContext, 
             IUsuariosDAL usuariosDAL,
-            IRolesDAL rolesDAL
+            IRolesDAL rolesDAL,
+            IUsuarioRolesDAL usuarioRolesDAL,
+            IPropiedadesDAL propiedadesDAL,
+            IImagenesPropiedadDAL imagenesPropiedadDAL
             )
         {
             this._alquilaCrContext = alquilaCrContext;
             this.UsuariosDAL = usuariosDAL;
             this.RolesDAL = rolesDAL;
+            this.UsuarioRolesDAL = usuarioRolesDAL;
+            this.PropiedadesDAL = propiedadesDAL;
+            this.ImagenesPropiedadDAL = imagenesPropiedadDAL;
         }
 
         public bool Complete()

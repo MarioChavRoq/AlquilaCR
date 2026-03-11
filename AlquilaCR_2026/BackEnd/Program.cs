@@ -31,6 +31,12 @@ builder.Services.AddScoped<IUsuariosDAL, UsuariosDAL>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IRolesDAL, RolesDAL>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IUsuarioRolesDAL, UsuarioRolesDAL>();
+builder.Services.AddScoped<IUsuarioRoleService, UsuarioRoleService>();
+builder.Services.AddScoped<IPropiedadesDAL, PropiedadesDAL>();
+builder.Services.AddScoped<IPropiedadService, PropiedadService>();
+builder.Services.AddScoped<IImagenesPropiedadDAL, ImagenesPropiedadDAL>();
+builder.Services.AddScoped<IImagenesPropiedadService, ImagenesPropiedadService>();
 
 
 

@@ -10,6 +10,9 @@ namespace DAL.Interfaces
     {
         IUsuariosDAL UsuariosDAL { get; }
         IRolesDAL RolesDAL { get; }
+        IUsuarioRolesDAL UsuarioRolesDAL { get; }
+        IPropiedadesDAL PropiedadesDAL { get; }
+        IImagenesPropiedadDAL ImagenesPropiedadDAL { get; }
 
         bool Complete ();
     }
